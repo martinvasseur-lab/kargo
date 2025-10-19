@@ -16,7 +16,7 @@ spec:
     metadata:
       name: kargo-{{ env }}
       annotations:
-        kargo.akuity.io/authorized-stage-namespaces: kargo-project:{{ env }}
+        kargo.akuity.io/authorized-stage: kargo-project:{{ env }}
     spec:
       project: argo-project
       source:
