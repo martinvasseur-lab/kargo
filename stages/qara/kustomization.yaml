@@ -1,0 +1,7 @@
+resources:
+- ../../base
+
+nameSuffix: -qara
+
+patchesStrategicMerge:
+- replica-patch.yaml

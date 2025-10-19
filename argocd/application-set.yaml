@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: my-applicationset
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+          - env: qara
+          - env: staging
+          - env: prod-eu
+          - env: prod-us
+  template:
+    metadata:
+      name: kargo-{{ env }}
+      annotations:
+        kargo.akuity.io/authorized-stage-namespaces: kargo-project:{{ env }}
+    spec:
+      project: argo-project
+      source:
+        repoURL: https://github.com/martinvasseur-lab/kargo
+        targetRevision: stage/{{ env }}
+        path: .
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: kargo-{{ env }}
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
