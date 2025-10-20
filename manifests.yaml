@@ -15,7 +15,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: ghcr.io/martinvasseur-lab/kargo-project:1.0.1
+      - image: ghcr.io/martinvasseur-lab/kargo-project
         name: nginx
         ports:
         - containerPort: 80
